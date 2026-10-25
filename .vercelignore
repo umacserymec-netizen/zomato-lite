@@ -1,0 +1,7 @@
+# Files that must never be uploaded to Vercel, even if .gitignore changes.
+# The Vercel CLI uses this file (and falls back to .gitignore) to decide what
+# gets sent with a deployment. Your local secrets stay on your machine.
+.env*
+.vercel
+.next
+node_modules
