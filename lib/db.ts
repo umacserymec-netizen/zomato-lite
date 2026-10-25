@@ -12,11 +12,14 @@ if (!connectionString) {
   );
 }
 
-export const sql = neon(connectionString);
+// A checked copy that TypeScript can rely on everywhere in this file.
+const databaseUrl: string = connectionString;
+
+export const sql = neon(databaseUrl);
 
 // Error messages can contain the connection string. Before anything is logged
 // or returned, replace that whole string with the word [hidden].
 export function hideSecrets(error: unknown): string {
   const text = error instanceof Error ? error.message : String(error);
-  return text.split(connectionString).join("[hidden]");
+  return text.split(databaseUrl).join("[hidden]");
 }
